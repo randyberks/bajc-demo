@@ -14,7 +14,7 @@ public class EntryController {
 	
 	private DocxWriter docx = new DocxWriter();
 	
-	@GetMapping("/certificate")
+	@GetMapping("/")
 	public String greetingForm(Model model) {
 		model.addAttribute("certificate", new Certificate());
 		return "form";

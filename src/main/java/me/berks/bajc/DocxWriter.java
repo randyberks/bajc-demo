@@ -33,7 +33,7 @@ public class DocxWriter {
 	
 	public WordprocessingMLPackage prepareDocx(String name) throws Docx4JException {
 		// create a date object
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/mm/yy", Locale.US);
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yy", Locale.US);
 		LocalDateTime now = LocalDateTime.now();
 					
 		// load the docx base template
