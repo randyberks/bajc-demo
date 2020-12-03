@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <title>Certificate of Attendance</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://unpkg.com/@clr/ui/clr-ui.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/@clr/ui@2.0.0/clr-ui.min.css" />
+
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var bytes = /*[[${file}]]*/ 'default';
+
+        function base64ToArrayBuffer(base64) {
+            var binaryString = window.atob(base64);
+            var binaryLen = binaryString.length;
+            var bytes = new Uint8Array(binaryLen);
+            for (var i = 0; i < binaryLen; i++) {
+                var ascii = binaryString.charCodeAt(i);
+                bytes[i] = ascii;
+            }
+            return bytes;
+        }
+
+        function saveFile() {
+            var ab = base64ToArrayBuffer(bytes);
+            var blob = new Blob([ab]);
+            var link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            var fileName = 'certificate.docx';
+            link.download = fileName;
+            link.click();
+        }
+        /*]]>*/
+    </script>
+</head>
+
+<body>
+    <div class="main-container">
+        <header class="header header-6">
+        </header>
+        <div class="content-container">
+            <div class="content-area">
+                <h1 th:text="'Congratulations! ' + ${certificate.name} + '  Your certificate is ready'"></h1>
+                <button class="btn btn-primary" onclick="saveFile()">Download Certificate</button>
+                <a href="/certificate">Get Another Certificate</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
